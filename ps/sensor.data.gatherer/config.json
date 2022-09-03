@@ -1,0 +1,6 @@
+{
+    "sensors": [
+        "http://something.nice"
+    ],
+    "endpoint": "hostname"
+}
