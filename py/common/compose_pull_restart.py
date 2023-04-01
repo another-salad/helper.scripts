@@ -36,7 +36,7 @@ def pull_restart(working_dir: str, v2: bool = True):
         # Depending on your distro of choice (yes I am assuming Linux here...) we may be in /usr/local/bin or just /usr/bin
         path_options = ["/usr/local/bin/docker-compose", "/usr/bin/docker-compose"]
         for po in path_options:
-            if Path.exists(po):
+            if Path(po).exists():
                 compose_cmd = [po]  # python, you are a pain in my arse...
                 break
         else:
