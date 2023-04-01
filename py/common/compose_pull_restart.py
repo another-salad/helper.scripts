@@ -38,6 +38,7 @@ def pull_restart(working_dir: str, v2: bool = True):
         for po in path_options:
             if Path.exists(po):
                 compose_cmd = [po]  # python, you are a pain in my arse...
+                break
         else:
             # Crash and burn because _python_
             raise Exception("Unable to find docker compose v1 path. Is it installed?")
