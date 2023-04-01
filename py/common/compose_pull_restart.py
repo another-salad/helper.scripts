@@ -33,7 +33,14 @@ def pull_restart(working_dir: str, v2: bool = True):
     if v2:
         compose_cmd = ("/usr/bin/docker", "compose")
     else:
-        compose_cmd = ["/usr/local/bin/docker-compose"]  # python, you are a pain in my arse...
+        # Depending on your distro of choice (yes I am assuming Linux here...) we may be in /usr/local/bin or just /usr/bin
+        path_options = ["/usr/local/bin/docker-compose", "/usr/bin/docker-compose"]
+        for po in path_options:
+            if Path.exists(po):
+                compose_cmd = [po]  # python, you are a pain in my arse...
+        else:
+            # Crash and burn because _python_
+            raise Exception("Unable to find docker compose v1 path. Is it installed?")
 
     pull = [*compose_cmd, "pull"]
     down = [*compose_cmd, "down", "--remove-orphans"]
