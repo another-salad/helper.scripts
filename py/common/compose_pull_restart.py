@@ -34,7 +34,7 @@ def pull_restart(working_dir: str, compose_file: Optional[str] = None, v2: bool 
     :param v2: True for docker compose v2 else v1
     """
     if v2:
-        compose_cmd = ("/usr/bin/docker", "compose")
+        compose_cmd = ["/usr/bin/docker", "compose"]
     else:
         # Depending on your distro of choice (yes I am assuming Linux here...) we may be in /usr/local/bin or just /usr/bin
         path_options = ["/usr/local/bin/docker-compose", "/usr/bin/docker-compose"]
