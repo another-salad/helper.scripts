@@ -11,14 +11,15 @@ class Args(ArgumentParser):
     def __init__(self, description="Pulls and restarts the container spawned via docker compose in the provided DIR"):
         super().__init__(description=description)
         self.add_argument("--dir", dest="working_dir", type=str)
+        self.add_argument("--compose", dest="compose_file", type=str)
         self.add_argument("--v1", dest="v2", action="store_false")
-        self.set_defaults(v2=True)
+        self.set_defaults(v2=True, compose_file=None)
 
 
 def main():
     """Main baby"""
     args = Args().parse_args()
-    pull_restart(args.working_dir, args.v2)
+    pull_restart(args.working_dir, args.compose_file, args.v2)
 
 
 if __name__ == "__main__":
